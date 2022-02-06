@@ -22,10 +22,10 @@ defmodule Bitcoin.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:finch, "~> 0.9.1"},
+      {:finch, "~> 0.10.2"},
       {:jason, "~> 1.2"},
       {:decimal, "~> 2.0"},
-      {:chumak, "~> 1.3.0"},
+      {:chumak, "~> 1.4.0"},
       {:b58, "~> 1.0.2"},
     ]
   end
