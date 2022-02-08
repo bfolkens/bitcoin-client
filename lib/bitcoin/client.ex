@@ -35,6 +35,10 @@ defmodule Bitcoin.Client do
     Request.send("getnewaddress", [])
   end
 
+  def getaddressinfo(address) do
+    Request.send("getaddressinfo", [address])
+  end
+
   def createwallet(name) do
     Request.send("createwallet", [name])
   end
