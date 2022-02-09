@@ -8,7 +8,13 @@ defmodule Bitcoin.Monitor do
       end
 
       def init(_opts) do
-        {:ok, socket} = Bitcoin.ZMQ.connect(unquote(streams))
+        {:ok, socket} = connect(unquote(streams))
+
+        {:ok, socket, {:continue, unquote(streams)}}
+      end
+
+      defp connect(streams) do
+        {:ok, socket} = Bitcoin.ZMQ.connect(streams)
 
         parent_pid = self()
 
@@ -24,4 +30,3 @@ defmodule Bitcoin.Monitor do
     end
   end
 end
-
