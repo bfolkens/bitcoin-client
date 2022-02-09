@@ -4,6 +4,7 @@ services:
     image: ruimarinho/bitcoin-core:22.0
     command:
       - "-printtoconsole"
+      - "-fallbackfee=0.00001"
       - "-regtest=1"
       - "-rpcallowip=0.0.0.0/0"
       - "-rpcbind=0.0.0.0"
@@ -16,4 +17,6 @@ services:
       - "18443:18443"
       - "18444:18444"
       - "29002:29002"
+    volumes:
+      - ./.data/bitcoin:/home/bitcoin/.bitcoin
 
