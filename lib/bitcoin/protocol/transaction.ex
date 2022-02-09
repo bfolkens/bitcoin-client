@@ -27,6 +27,16 @@ defmodule Bitcoin.Protocol.Transaction do
   def vout_with_address(tx, hash) do
     Enum.filter(tx.vout, fn vout -> vout.script_pub_key.address == hash end)
   end
+
+  def balance_for_address(tx, address) do
+    vout = vout_with_address(tx, address)
+
+    if vout != [] do
+      Enum.reduce(vout, Decimal.new(0), &Decimal.add(&1.value, &2))
+    else
+      nil
+    end
+  end
 end
 
 defmodule Bitcoin.Protocol.VIn do
