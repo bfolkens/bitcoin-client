@@ -23,6 +23,10 @@ defmodule Bitcoin.Protocol.Transaction do
   def has_vout?(tx, hash) do
     Enum.any?(tx.vout, fn vout -> vout.script_pub_key.address == hash end)
   end
+
+  def vout_with_address(tx, hash) do
+    Enum.filter(tx.vout, fn vout -> vout.script_pub_key.address == hash end)
+  end
 end
 
 defmodule Bitcoin.Protocol.VIn do

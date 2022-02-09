@@ -16,4 +16,9 @@ defmodule Bitcoin.Protocol.TransactionTest do
     refute Protocol.Transaction.has_vout?(@tx, "bogus")
     assert Protocol.Transaction.has_vout?(@tx, "abbacadabba")
   end
+
+  test "vout_with_address/1 filters tx for address" do
+    assert Protocol.Transaction.vout_with_address(@tx, "bogus") == []
+    assert Protocol.Transaction.vout_with_address(@tx, "abbacadabba") == @tx.vout
+  end
 end
