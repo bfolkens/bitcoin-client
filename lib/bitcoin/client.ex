@@ -39,6 +39,12 @@ defmodule Bitcoin.Client do
     Request.send("getaddressinfo", [address])
   end
 
+  def listtransactions(), do: Request.send("listtransactions", [])
+  def listtransactions(label), do: Request.send("listtransactions", [label])
+
+  def listsinceblock(), do: Request.send("listsinceblock", [])
+  def listsinceblock(blockhash), do: Request.send("listsinceblock", [blockhash])
+
   def createwallet(name) do
     Request.send("createwallet", [name])
   end
