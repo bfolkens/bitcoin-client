@@ -49,6 +49,10 @@ defmodule Bitcoin.Client do
     Request.send("createwallet", [name])
   end
 
+  def gettransaction(txid) do
+    Request.send("gettransaction", [txid])
+  end
+
   def loadwallet(name) do
     Request.send("loadwallet", [name])
   end
