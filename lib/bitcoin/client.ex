@@ -21,6 +21,10 @@ defmodule Bitcoin.Client do
     Request.send("getrawmempool", [opts[:verbose], opts[:mempool_sequence]])
   end
 
+  def getblockchaininfo() do
+    Request.send("getblockchaininfo", [])
+  end
+
   def getblock(blockhash, opts \\ []) do
     with {:ok, response} <- Request.send("getblock", [blockhash, opts[:verbosity]]) do
       {:ok, Protocol.Block.from(response)}
