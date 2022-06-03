@@ -1,6 +1,14 @@
 defmodule Bitcoin.Client do
   alias Bitcoin.{Request, Protocol}
 
+  def getbalance() do
+    Request.send("getbalance")
+  end
+
+  def getwalletinfo() do
+    Request.send("getwalletinfo")
+  end
+
   def getnetworkinfo() do
     Request.send("getnetworkinfo")
   end
