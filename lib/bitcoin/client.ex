@@ -77,6 +77,30 @@ defmodule Bitcoin.Client do
     Request.send("sendtoaddress", [address, amount])
   end
 
+  def walletcreatefundedpsbt(outputs) do
+    Request.send("walletcreatefundedpsbt", [[], outputs])
+  end
+
+  def decodepsbt(psbt) do
+    Request.send("decodepsbt", [psbt])
+  end
+
+  def analyzepsbt(psbt) do
+    Request.send("analyzepsbt", [psbt])
+  end
+
+  def combinepsbt(psbts) do
+    Request.send("combinepsbt", [psbts])
+  end
+
+  def finalizepsbt(psbt_hex) do
+    Request.send("finalizepsbt", [psbt_hex])
+  end
+
+  def sendrawtransaction(hexstring) do
+    Request.send("sendrawtransaction", [hexstring])
+  end
+
   def decoderawtransaction(hexstring) do
     with {:ok, response} <- Request.send("decoderawtransaction", [hexstring]) do
       {:ok, Protocol.Transaction.from(response)}
