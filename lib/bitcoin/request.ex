@@ -17,7 +17,11 @@ defmodule Bitcoin.Request do
 
   def rpc_password, do: Application.get_env(:bitcoin, :rpc_password)
 
+  def rpc_wallet, do: Application.get_env(:bitcoin, :rpc_wallet)
+
   def send(command, params \\ []) do
+    url = rpc_url() <> "/wallet/" <> rpc_wallet()
+
     body = Jason.encode!(%{jsonrpc: "2.0", method: command, params: params})
 
     headers = [
@@ -25,7 +29,7 @@ defmodule Bitcoin.Request do
       {"Authorization", "Basic #{authorization()}"}
     ]
 
-    Finch.build(:post, rpc_url(), headers, body)
+    Finch.build(:post, url, headers, body)
     |> Finch.request(__MODULE__)
     |> handle_response()
   end
