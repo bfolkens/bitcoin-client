@@ -69,6 +69,10 @@ defmodule Bitcoin.Client do
     Request.send("loadwallet", [name])
   end
 
+  def listdescriptors() do
+    Request.send("listdescriptors", [])
+  end
+
   def generatetoaddress(num_blocks, address) do
     Request.send("generatetoaddress", [num_blocks, address])
   end
