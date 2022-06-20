@@ -85,6 +85,10 @@ defmodule Bitcoin.Client do
     Request.send("walletcreatefundedpsbt", [[], outputs])
   end
 
+  def walletprocesspsbt(psbt, sign \\ true) do
+    Request.send("walletprocesspsbt", [psbt, sign])
+  end
+
   def decodepsbt(psbt) do
     Request.send("decodepsbt", [psbt])
   end
