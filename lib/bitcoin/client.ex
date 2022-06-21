@@ -57,20 +57,40 @@ defmodule Bitcoin.Client do
   def listsinceblock(), do: Request.send("listsinceblock", [])
   def listsinceblock(blockhash), do: Request.send("listsinceblock", [blockhash])
 
-  def createwallet(name) do
-    Request.send("createwallet", [name])
+  def createwallet(wallet_name, opts \\ []) do
+    Request.send("createwallet", [
+      wallet_name,
+      opts[:disable_private_keys],
+      opts[:blank],
+      opts[:passphrase],
+      opts[:avoid_reuse],
+      opts[:descriptors],
+      opts[:load_on_startup]
+    ])
   end
 
   def gettransaction(txid) do
     Request.send("gettransaction", [txid])
   end
 
-  def loadwallet(name) do
-    Request.send("loadwallet", [name])
+  def loadwallet(filename, opts \\ []) do
+    Request.send("loadwallet", [filename, opts[:load_on_startup]])
+  end
+
+  def unloadwallet(opts \\ []) do
+    Request.send("unloadwallet", [opts[:wallet_name], opts[:load_on_startup]])
   end
 
   def listdescriptors() do
     Request.send("listdescriptors", [])
+  end
+
+  def importdescriptors(desc) do
+    Request.send("importdescriptors", [desc])
+  end
+
+  def getdescriptorinfo(desc) do
+    Request.send("getdescriptorinfo", [desc])
   end
 
   def generatetoaddress(num_blocks, address) do
