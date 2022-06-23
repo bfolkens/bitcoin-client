@@ -101,6 +101,10 @@ defmodule Bitcoin.Client do
     Request.send("sendtoaddress", [address, amount])
   end
 
+  def decodescript(script) do
+    Request.send("decodescript", [script])
+  end
+
   def walletcreatefundedpsbt(outputs) do
     Request.send("walletcreatefundedpsbt", [[], outputs])
   end
