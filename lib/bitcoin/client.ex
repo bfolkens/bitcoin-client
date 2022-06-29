@@ -51,6 +51,10 @@ defmodule Bitcoin.Client do
     Request.send("getaddressinfo", [address])
   end
 
+  def validateaddress(address) do
+    Request.send("validateaddress", [address])
+  end
+
   def listtransactions(), do: Request.send("listtransactions", [])
   def listtransactions(label), do: Request.send("listtransactions", [label])
 
