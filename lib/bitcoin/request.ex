@@ -34,7 +34,7 @@ defmodule Bitcoin.Request do
     |> handle_response()
   end
 
-  def handle_response({:ok, %{body: body, status: _code}}) do
+  def handle_response({:ok, %{body: body, status: code}}) do
     case Jason.decode(body) do
       {:ok, %{"error" => nil, "result" => result}} ->
         {:ok, result}
@@ -43,7 +43,7 @@ defmodule Bitcoin.Request do
         {:error, error}
 
       {:error, _error} ->
-        {:error, "Can't decode: #{body}"}
+        {:error, "Process returned (#{code}): #{body}"}
     end
   end
 
